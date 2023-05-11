@@ -1,0 +1,40 @@
+{
+  "name": "whiskers-js",
+  "version": "1.0.0",
+  "description": "An unofficial API Wrapper for the Cat API at www.thecatapi.com",
+  "main": "Client.ts",
+  "scripts": {
+    "test": "nyc --reporter=html mocha -r ts-node/register -R spec 'test/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dtregea/Unofficial-Cat-API-Wrapper"
+  },
+  "keywords": [
+    "cat",
+    "api",
+    "wrapper",
+    "cat api",
+    "whiskers-js"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dtregea/whiskers-js/issues"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^16.16.0",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  },
+  "homepage": "https://github.com/dtregea/whiskers-js#readme"
+}

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "lib": ["es2015"],
+      "declaration": true,
+      "outDir": "./prod",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": false
+    },
+    "exclude": ["test/**/*", "node_modules/**/*", "prod/**/*"]
+  }
