@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "An unofficial API Wrapper for the Cat API at www.thecatapi.com",
   "main": "dist/Client.js",
+  "types": "dist/Types.d.ts",
   "scripts": {
     "test": "nyc --reporter=html mocha -r ts-node/register -R spec 'test/**/*.ts'",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "tsc"
   },
   "repository": {
     "type": "git",
