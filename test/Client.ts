@@ -14,7 +14,7 @@ describe("Client", () => {
     const apiKey = "foo";
     const client = new Client(apiKey);
 
-    describe("searchImages()", () => {
+    describe("getImages()", () => {
         it("should return a SearchImageResult object", async () => {
             const params: ImagesSearchOptions = { limit: 1, order: "RANDOM", mime_types: "gif,jpg,png" };
             const response = await client.getImages(params);
@@ -43,13 +43,13 @@ describe("Client", () => {
         });
     });
 
-    describe("getImage()", () => {
+    describe("getImageById()", () => {
         it("should return an ImageResponse object", async () => {
             const breedName = "Sphynx";
             const breedResponse = await client.getBreed(breedName);
             expect(breedResponse).to.not.equal([]);
 
-            const response = await client.getImageById(breedResponse[0].reference_image_id);
+            const response = await client.getImageById(breedResponse[0].reference_image_id);            
 
             expect(response).to.have.property("id", breedResponse[0].reference_image_id);
             expect(response).to.have.property("url");
@@ -68,7 +68,7 @@ describe("Client", () => {
         });
     });
 
-    describe("getBreeds()", () => {
+    describe("getBreedList()", () => {
         it("should return a BreedsResponse object", async () => {
             const response = await client.getBreedList();
             expect(response).to.be.an.instanceOf(Array);
@@ -116,7 +116,7 @@ describe("Client", () => {
         });
     });
 
-    describe("getCategories()", () => {
+    describe("getCategoryList()", () => {
         it("Should return an array of Category objects", async () => {
             const response = await client.getCategoryList();
 

@@ -58,8 +58,8 @@ export class Client {
      * @param id {string} - The ID of the cat image.
      * @returns {Promise<ImageResult>} - A Promise that resolves to a cat image.
      */
-    async getImageById(id: string): Promise<Array<Image>> {
-        const response: AxiosResponse<Array<Image>> = await this.axios.get(`/images/${id}`);
+    async getImageById(id: string): Promise<Image> {
+        const response: AxiosResponse<Image> = await this.axios.get(`/images/${id}`);
         return response.data;
     }
 
