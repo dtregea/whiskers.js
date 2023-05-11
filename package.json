@@ -2,7 +2,7 @@
   "name": "whiskers-js",
   "version": "1.0.0",
   "description": "An unofficial API Wrapper for the Cat API at www.thecatapi.com",
-  "main": "./dist/Client.js",
+  "main": "dist/Client.js",
   "scripts": {
     "test": "nyc --reporter=html mocha -r ts-node/register -R spec 'test/**/*.ts'",
     "build": "tsc",
