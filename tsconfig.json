@@ -4,11 +4,11 @@
       "module": "commonjs",
       "lib": ["es2015"],
       "declaration": true,
-      "outDir": "./prod",
+      "outDir": "./dist",
       "rootDir": "./src",
       "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": false
     },
-    "exclude": ["test/**/*", "node_modules/**/*", "prod/**/*"]
+    "exclude": ["test/**/*", "node_modules/**/*", "dist/**/*"]
   }
