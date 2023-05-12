@@ -1,5 +1,5 @@
 export { Client } from './client';
-export { APIError } from './apiError';
+export { WhiskersError } from './whiskersError';
 export { 
   SearchImageResult, 
   Image, 

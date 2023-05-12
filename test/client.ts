@@ -7,7 +7,7 @@ import {
     ImagesSearchOptions,
 } from "../src/interfaces";
 import { fail } from "assert";
-import { APIError } from "../src/APIError";
+import { WhiskersError } from "../src/whiskersError";
 
 
 describe("Client", () => {
@@ -56,12 +56,12 @@ describe("Client", () => {
             expect(response).to.have.property("breeds");            
         });
 
-        it("should reject and throw an APIError object on an invalid ID", async () => {
+        it("should reject and throw an WhiskersError object on an invalid ID", async () => {
             try {
                 await client.getImageById("Not a real id");
                 fail("Should not be reached");
             } catch(error: any) {
-                expect(error).to.be.instanceOf(APIError);                
+                expect(error).to.be.instanceOf(WhiskersError);                
                 expect(error.status).to.equal(400);
             }
             

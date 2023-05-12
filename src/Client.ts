@@ -6,7 +6,7 @@ import {
     Breed,
     Category
 } from "./interfaces";
-import { APIError } from "./apiError";
+import { WhiskersError } from "./whiskersError";
 
 /**
  * Client class for interacting with The Cat API.
@@ -28,7 +28,7 @@ export class Client {
                 return response;
             },
             async (error: AxiosError) => {
-                return Promise.reject(new APIError(error));
+                return Promise.reject(new WhiskersError(error));
             }
         );
     }

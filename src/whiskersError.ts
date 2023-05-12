@@ -3,7 +3,7 @@ import { AxiosError, AxiosResponse } from "axios";
 /**
  * This class provides additional properties to give more context about errors.
  */
-export class APIError extends Error {
+export class WhiskersError extends Error {
     /** The HTTP request that was made. */
     public request: any;
     /** The HTTP response that was received. This is null if no response was received. */
@@ -16,8 +16,8 @@ export class APIError extends Error {
     public detail: string | undefined;
 
     /**
-     * The constructor for the APIError class.
-     * @param {AxiosError} error - The AxiosError object from which to create the APIError.
+     * The constructor for the WhiskersError class.
+     * @param {AxiosError} error - The AxiosError object from which to create the WhiskersError.
      */
     constructor(error: AxiosError) {
         super(error.message);
@@ -28,6 +28,6 @@ export class APIError extends Error {
             this.status = this.response.status;
             this.url = this.response.config.url;
         }
-        Object.setPrototypeOf(this, APIError.prototype);                        
+        Object.setPrototypeOf(this, WhiskersError.prototype);                        
     }
 }

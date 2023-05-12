@@ -1,8 +1,4 @@
-
 #  whiskers-js
-
-  
-
 This is an unofficial TypeScript-based API Wrapper for [The Cat API](https://thecatapi.com/). It allows you to easily interact with the API, providing methods to receive for cat images and information from The Cat API.
 
 ## Methods
@@ -39,7 +35,7 @@ try {
 To get a cat image by its ID, use the `getImageById` method.
 ```
 try {
-	const image = await client.getImage("image-id");
+	const image = await client.getImageById("image-id");
 	console.log(image);
 } catch (error) {
 	console.error(error);
@@ -66,20 +62,21 @@ try {
 }
 ```
 ##  Error Handling
-This API wrapper throws an `APIError` if there is an error response from The Cat API. This error object includes useful information about what went wrong. It contains the following properties:
+This API wrapper throws an `WhiskersError` if there is an error response from The Cat API. This error object includes useful information about what went wrong. It contains the following properties:
 -  `request`: The request that was made.
 -  `response`: The response received from the server, if any.
 -  `status`: The status code of the HTTP response.
 -  `url`: The URL of the HTTP request.
 -  `detail`: The body of the HTTP response.
 
-Here is how you can catch and handle an `APIError`:
+Here is how you can catch and handle an `WhiskersError`:
 
 ```
+import { WhiskersError } from "whiskers-js";
 try {
 	const image = await client.getImageById("invalid-id");
 } catch (error) {
-	if (error instanceof APIError) {
+	if (error instanceof WhiskersError) {
 		console.error(`Error: ${error.message}`);
 		console.error(`Status: ${error.status}`);
 		console.error(`URL: ${error.url}`);
@@ -105,7 +102,7 @@ Contributions are always welcome! Please read the contribution guidelines first.
 
 	`git push origin name-of-your-branch `
 
-6.  **Create a Pull Request**: Go to your forked repository on GitHub and click the "New Pull Request" button. Fill out the Pull Request template and submit it. Before your Pull Request can be merged, the following conditions must be met:
+6.  **Create a Pull Request**: Go to your forked repository on GitHub and click the "New Pull Request" button. Merge to the develop branch. Before your Pull Request can be merged, the following conditions must be met:
 
 	- All tests must pass.
 
