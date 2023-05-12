@@ -2,7 +2,6 @@ import env from "dotenv"
 env.config();
 import { expect } from "chai";
 import { Client } from "../src/client";
-
 import {
     ImagesSearchOptions,
 } from "../src/interfaces";
@@ -64,7 +63,6 @@ describe("Client", () => {
                 expect(error).to.be.instanceOf(WhiskersError);                
                 expect(error.status).to.equal(400);
             }
-            
         });
     });
 

@@ -56,7 +56,7 @@ export class Client {
     /**
      * Retrieves a cat image by its ID.
      * @param id {string} - The ID of the cat image.
-     * @returns {Promise<ImageResult>} - A Promise that resolves to a cat image.
+     * @returns {Promise<Image>} - A Promise that resolves to a cat image.
      */
     async getImageById(id: string): Promise<Image> {
         const response: AxiosResponse<Image> = await this.axios.get(`/images/${id}`);
@@ -64,9 +64,9 @@ export class Client {
     }
 
     /**
-     * Searches for a cat breed by its name or ID.
+     * Searches for a cat breed by its name or ID with partial matching.
      * @param breedName {string} - The name or ID of the cat breed to search for.
-     * @returns {Promise<BreedResult>} - A Promise that resolves to an array of cat breeds that match the search query.
+     * @returns {Promise<Array<Breed>>} - A Promise that resolves to an array of cat breeds that match the search query.
      */
     async getBreed(breedName: string): Promise<Array<Breed>> {
         const breedParam = breedName.split(" ").join("%20");
@@ -76,7 +76,7 @@ export class Client {
 
     /**
      * Retrieves all cat breeds.
-     * @returns {Promise<BreedsResult>} - A Promise that resolves to an array of cat breeds.
+     * @returns {Promise<Array<Breed>>} - A Promise that resolves to an array of cat breeds.
      */
     async getBreedList(): Promise<Array<Breed>> {
         const response: AxiosResponse<Array<Breed>> = await this.axios.get(`/breeds`);
@@ -85,7 +85,7 @@ export class Client {
 
     /**
      * Retrieve all image categories.
-     * @returns {Promise<BreedsResult>} - A Promise that resolves to an array of categories.
+     * @returns {Promise<Array<Category>>} - A Promise that resolves to an array of categories.
      */
     async getCategoryList(): Promise<Array<Category>> {
         const response: AxiosResponse<Array<Category>> = await this.axios.get(`/categories`);

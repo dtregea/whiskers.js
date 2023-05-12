@@ -36,7 +36,7 @@ To get a cat image by its ID, use the `getImageById` method.
 ```
 try {
 	const image = await client.getImageById("image-id");
-	console.log(image);
+	console.log(image.url);
 } catch (error) {
 	console.error(error);
 }
