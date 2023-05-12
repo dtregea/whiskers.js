@@ -132,4 +132,4 @@ dist
 # Compiled TypeScript
 prod
 
-.DS_STORE
+.DS_Store

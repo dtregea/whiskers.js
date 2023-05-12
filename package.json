@@ -2,12 +2,12 @@
   "name": "whiskers-js",
   "version": "1.0.0",
   "description": "An unofficial API Wrapper for the Cat API at www.thecatapi.com",
-  "main": "dist/Client.js",
-  "types": "dist/Types.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "nyc --reporter=html mocha -r ts-node/register -R spec 'test/**/*.ts'",
     "build": "tsc",
-    "prepare": "tsc"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
