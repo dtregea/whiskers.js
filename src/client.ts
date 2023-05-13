@@ -17,7 +17,7 @@ export class Client {
 
     /**
      * Creates a new instance of the Client class.
-     * @param apiKey {string} - The API key for The Cat API.
+     * @param apiKey {string} The API key for The Cat API.
      */
     constructor(apiKey: string) {
         this.axios = axios;
@@ -34,11 +34,23 @@ export class Client {
     }
 
     /**
-     * Searches for cat images with the specified options.
-     * @param params {ImagesSearchOptions} - The search options to apply.
-     * @returns {Promise<SearchImageResult>} - A Promise that resolves to an array of cat images.
+     * Returns a random cat image or gif
+     * @returns {Promise<Image>} A Promise that resolves to an Image
      */
-    async getImages(params: ImagesSearchOptions): Promise<SearchImageResult> {
+    async getRandom(): Promise<Image> {
+        const response: AxiosResponse<Array<Image>> = await this.axios.get(
+            `${Client.BASE_URL}/images/search`,
+            { params: {limit: 1} }
+        );
+        return response.data[0];
+    }
+
+    /**
+     * Searches for cat images with the specified options.
+     * @param params {ImagesSearchOptions} The search options to apply.
+     * @returns {Promise<SearchImageResult>} A Promise that resolves to an array of cat images.
+     */
+    async searchImages(params: ImagesSearchOptions): Promise<SearchImageResult> {
         const response: AxiosResponse<Array<Image>> = await this.axios.get(
             `${Client.BASE_URL}/images/search`,
             { params }
@@ -55,8 +67,8 @@ export class Client {
 
     /**
      * Retrieves a cat image by its ID.
-     * @param id {string} - The ID of the cat image.
-     * @returns {Promise<Image | null>} - A Promise that resolves to a cat image. Null if not found.
+     * @param id {string} The ID of the cat image.
+     * @returns {Promise<Image | null>} A Promise that resolves to a cat image. Null if not found.
      */
     async getImageById(id: string): Promise<Image | null> {
         try {
@@ -73,8 +85,8 @@ export class Client {
 
     /**
      * Searches for a cat breed by its name or ID with partial matching.
-     * @param breedNameOrId {string} - The name or ID of the cat breed to search for.
-     * @returns {Promise<Array<Breed>>} - A Promise that resolves to an array of cat breeds that match the search query.
+     * @param breedNameOrId {string} The name or ID of the cat breed to search for.
+     * @returns {Promise<Array<Breed>>} A Promise that resolves to an array of cat breeds that match the search query.
      */
     async getBreed(breedNameOrId: string): Promise<Array<Breed>> {
         const breedParam = breedNameOrId.split(" ").join("%20");
@@ -84,7 +96,7 @@ export class Client {
 
     /**
      * Retrieves all cat breeds.
-     * @returns {Promise<Array<Breed>>} - A Promise that resolves to an array of cat breeds.
+     * @returns {Promise<Array<Breed>>} A Promise that resolves to an array of cat breeds.
      */
     async getBreedList(): Promise<Array<Breed>> {
         const response: AxiosResponse<Array<Breed>> = await this.axios.get(`/breeds`);
@@ -93,7 +105,7 @@ export class Client {
 
     /**
      * Retrieve all image categories.
-     * @returns {Promise<Array<Category>>} - A Promise that resolves to an array of categories.
+     * @returns {Promise<Array<Category>>} A Promise that resolves to an array of categories.
      */
     async getCategoryList(): Promise<Array<Category>> {
         const response: AxiosResponse<Array<Category>> = await this.axios.get(`/categories`);

@@ -7,7 +7,8 @@
   "scripts": {
     "test": "nyc --reporter=html mocha -r ts-node/register -R spec 'test/**/*.ts'",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "testing": "tsc && node dist/test.js"
   },
   "repository": {
     "type": "git",

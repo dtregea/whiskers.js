@@ -116,17 +116,17 @@ export interface ImagesSearchOptions {
     size?: 'small' | 'med' | 'full',
     /** The available image types. Defaults to all types. Can be 'gif', 'jpg', 'png', or any combination of these. */
     mime_types?: 'gif' | 'jpg' | 'png' | 'gif,jpg' | 'gif,png' | 'jpg,png' | 'gif,jpg,png',
-    /** If either ASC or DESC is passed then the Pagination headers will be on the response allowing you to see the total amount of results. Pagination numbers will only be provided with a valid API Key. */
+    /** Order of results. Default is Random. If either ASC or DESC is passed then the Pagination headers will be on the response allowing you to see the total amount of results. Pagination numbers will only be provided with a valid API Key. */
     order?: 'RANDOM' | 'ASC' | 'DESC',
-    /** The page number for pagination. Only used when order is ASC or DESC. Pagination can only be acheived with a valid API Key. */
+    /** The page number for results. Only used when order is ASC or DESC. Pagination can only be acheived with a valid API Key. */
     page?: number,
     /** The maximum number of results to return. Default is 1. You can only pass 1 with an invalid API Key, with a valid key you can pass up to 25. */
     limit?: number,
-    /** Comma delimited string of integers matching the id's of the Categories to filter the search. These categories can found with getCategories(). */
+    /** Comma delimited string of integers containing the id's of the Categories to search for. Category id's can found with getCategoryList(). */
     category_ids?: string,
-    /** Comma delimited string of integers, matching the id's of the Breeds to filter the search. */
+    /** Comma delimited string of integers containing the id's of the Breeds to search for. Breed id's can found with getBreedList(). */
     breed_ids?: string,
-    /** Only return images which have breed data attached. Default is 0. Integer 0 or 1. */
+    /** 0 or 1. Default is 0. Specifying 1 will only return images that have breed information. A valid API key is required to retrieve breed information on images. */
     has_breeds?: 0 | 1
 }
 
