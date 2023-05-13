@@ -1,15 +1,15 @@
-#  whiskers-js
+#  whiskers.js
 This is an unofficial TypeScript-based API Wrapper for [The Cat API](https://thecatapi.com/). It allows you to easily interact with the API, providing methods to receive for cat images and breed information.
 
 ##  Installation
 
 You can install the package via npm:
 
-`npm install whiskers-js`
+`npm install whiskers.js`
 
 Import the client class and instantiate it with your API key:
 ```
-import { Client } from "whiskers-js";
+import { Client } from "whiskers.js";
 const client = new Client("your-api-key");
 ```
 
@@ -82,7 +82,7 @@ This API wrapper throws an `WhiskersError` if there is an error response from Th
 Here is how you can catch and handle an `WhiskersError`:
 
 ```
-import { WhiskersError } from "whiskers-js";
+import { WhiskersError } from "whiskers.js";
 try {
 	await client.getBreedList();
 } catch (err) {

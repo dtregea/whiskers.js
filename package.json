@@ -1,5 +1,5 @@
 {
-  "name": "whiskers-js",
+  "name": "whiskers.js",
   "version": "1.0.0",
   "description": "An unofficial API Wrapper for the Cat API at www.thecatapi.com",
   "main": "dist/index.js",
@@ -11,20 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dtregea/whiskers-js"
+    "url": "https://github.com/dtregea/whiskers.js"
   },
   "keywords": [
     "cat",
     "api",
     "wrapper",
-    "whiskers-js",
+    "whiskers.js",
     "whiskers",
     "cute"
   ],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dtregea/whiskers-js/issues"
+    "url": "https://github.com/dtregea/whiskers.js/issues"
   },
   "dependencies": {
     "axios": "^0.27.2"
@@ -40,5 +40,5 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.8.3"
   },
-  "homepage": "https://github.com/dtregea/whiskers-js#readme"
+  "homepage": "https://github.com/dtregea/whiskers.js#readme"
 }
