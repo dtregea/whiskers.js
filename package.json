@@ -5,13 +5,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "nyc --reporter=html mocha -r ts-node/register -R spec 'test/**/*.ts'",
+    "test": "nyc --reporter=text mocha -r ts-node/register -R spec 'test/**/*.ts'",
     "build": "tsc",
     "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dtregea/Unofficial-Cat-API-Wrapper"
+    "url": "https://github.com/dtregea/whiskers-js"
   },
   "keywords": [
     "cat",
