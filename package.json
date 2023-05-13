@@ -7,8 +7,7 @@
   "scripts": {
     "test": "nyc --reporter=html mocha -r ts-node/register -R spec 'test/**/*.ts'",
     "build": "tsc",
-    "prepare": "npm run build",
-    "testing": "tsc && node dist/test.js"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,8 +17,9 @@
     "cat",
     "api",
     "wrapper",
-    "cat api",
-    "whiskers-js"
+    "whiskers-js",
+    "whiskers",
+    "cute"
   ],
   "author": "",
   "license": "ISC",
@@ -27,8 +27,7 @@
     "url": "https://github.com/dtregea/whiskers-js/issues"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "dotenv": "^16.0.3"
+    "axios": "^0.27.2"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",

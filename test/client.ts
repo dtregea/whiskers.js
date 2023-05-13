@@ -1,5 +1,3 @@
-import env from "dotenv"
-env.config();
 import { expect } from "chai";
 import { Client } from "../src/client";
 import { ImagesSearchOptions } from "../src/interfaces";
