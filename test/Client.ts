@@ -2,12 +2,10 @@ import env from "dotenv"
 env.config();
 import { expect } from "chai";
 import { Client } from "../src/client";
-import {
-    ImagesSearchOptions,
-} from "../src/interfaces";
-import { fail } from "assert";
+import { ImagesSearchOptions } from "../src/interfaces";
 import { WhiskersError } from "../src/whiskersError";
-
+const axios = require("axios");
+const MockAdapter = require("axios-mock-adapter");
 
 describe("Client", () => {
     const apiKey = "foo";
@@ -54,15 +52,23 @@ describe("Client", () => {
         });
 
         it("should return null on an invalid ID", async () => {
-            try {
-                let result = await client.getImageById("Not a real id");
+                const result = await client.getImageById("Not a real id");
             
                 expect(result).to.be.null; 
+        });
+
+        it("should return a WhiskersError on non image not found errors", async ()=> {
+            const rateLimitMock = new MockAdapter(axios);
+            rateLimitMock.onGet(`${Client.BASE_URL}/images/a_very_real_id`).reply(429);
+            try {
+                const result = await client.getImageById("a_very_real_id");
+                expect(result).to.be.instanceOf(WhiskersError); // Will not be reached
             } catch(error: any) {
                 expect(error).to.be.instanceOf(WhiskersError);                
-                expect(error.status).to.equal(400);
+                expect(error.status).to.equal(429);
             }
-        });
+            rateLimitMock.restore();
+        })
     });
 
     describe("getBreedList()", () => {
