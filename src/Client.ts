@@ -56,20 +56,28 @@ export class Client {
     /**
      * Retrieves a cat image by its ID.
      * @param id {string} - The ID of the cat image.
-     * @returns {Promise<Image>} - A Promise that resolves to a cat image.
+     * @returns {Promise<Image | null>} - A Promise that resolves to a cat image. Null if not found.
      */
-    async getImageById(id: string): Promise<Image> {
-        const response: AxiosResponse<Image> = await this.axios.get(`/images/${id}`);
-        return response.data;
+    async getImageById(id: string): Promise<Image | null> {
+        try {
+            const response: AxiosResponse<Image> = await this.axios.get(`/images/${id}`);
+            return response.data;
+        } catch (error) {
+            // We will rethrow the error if its something like a rate limit cap.
+            if ((error instanceof WhiskersError && error.status !== 400 || !(error instanceof WhiskersError))){
+                throw error;
+            }
+        }
+        return null;
     }
 
     /**
      * Searches for a cat breed by its name or ID with partial matching.
-     * @param breedName {string} - The name or ID of the cat breed to search for.
+     * @param breedNameOrId {string} - The name or ID of the cat breed to search for.
      * @returns {Promise<Array<Breed>>} - A Promise that resolves to an array of cat breeds that match the search query.
      */
-    async getBreed(breedName: string): Promise<Array<Breed>> {
-        const breedParam = breedName.split(" ").join("%20");
+    async getBreed(breedNameOrId: string): Promise<Array<Breed>> {
+        const breedParam = breedNameOrId.split(" ").join("%20");
         const response = await this.axios.get(`/breeds/search?q=${breedParam}`);
         return response.data;
     }

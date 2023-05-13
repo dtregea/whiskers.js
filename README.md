@@ -46,7 +46,7 @@ To search for a cat breed by its name or ID, use the `getBreed` method.
 ```
 try {
 	const breed = await client.getBreed("breed-name-or-id");
-	console.log(breed);
+	console.log(breed[0].description);
 } catch (error) {
 	console.error(error);
 }
@@ -55,32 +55,27 @@ try {
 To get all cat breeds, use the `getBreedList` method.
 ```
 try {
-	const breeds = await client.getBreedList();
-	console.log(breeds);
+	const breedList = await client.getBreedList();
+	breedList.forEach((breed) => console.log(breed.description))
 } catch (error) {
 	console.error(error);
 }
 ```
 ##  Error Handling
 This API wrapper throws an `WhiskersError` if there is an error response from The Cat API. This error object includes useful information about what went wrong. It contains the following properties:
--  `request`: The request that was made.
--  `response`: The response received from the server, if any.
+-  `detail`: The body of the HTTP response.
 -  `status`: The status code of the HTTP response.
 -  `url`: The URL of the HTTP request.
--  `detail`: The body of the HTTP response.
 
 Here is how you can catch and handle an `WhiskersError`:
 
 ```
 import { WhiskersError } from "whiskers-js";
 try {
-	const image = await client.getImageById("invalid-id");
-} catch (error) {
-	if (error instanceof WhiskersError) {
-		console.error(`Error: ${error.message}`);
-		console.error(`Status: ${error.status}`);
-		console.error(`URL: ${error.url}`);
-		console.error(`Detail: ${error.detail}`);
+	const image = await client.getBreedList();
+} catch (err) {
+	if (err instanceof WhiskersError && err.status === 429) {
+		console.error('Rate Limit Reached!')
 	}
 }
 ```

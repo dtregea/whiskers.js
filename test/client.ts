@@ -22,7 +22,6 @@ describe("Client", () => {
             expect(response.data).to.have.length(1);
             expect(response.data[0]).to.have.property("id");
             expect(response.data[0]).to.have.property("url");
-
         });
 
         it("should show pagination results as NaN if order is RANDOM", async () => {
@@ -43,22 +42,22 @@ describe("Client", () => {
     });
 
     describe("getImageById()", () => {
-        it("should return an ImageResponse object", async () => {
+        it("should return an Image object", async () => {
             const breedName = "Sphynx";
             const breedResponse = await client.getBreed(breedName);
             expect(breedResponse).to.not.equal([]);
 
             const response = await client.getImageById(breedResponse[0].reference_image_id);            
-
             expect(response).to.have.property("id", breedResponse[0].reference_image_id);
             expect(response).to.have.property("url");
             expect(response).to.have.property("breeds");            
         });
 
-        it("should reject and throw an WhiskersError object on an invalid ID", async () => {
+        it("should return null on an invalid ID", async () => {
             try {
-                await client.getImageById("Not a real id");
-                fail("Should not be reached");
+                let result = await client.getImageById("Not a real id");
+            
+                expect(result).to.be.null; 
             } catch(error: any) {
                 expect(error).to.be.instanceOf(WhiskersError);                
                 expect(error.status).to.equal(400);
@@ -67,17 +66,17 @@ describe("Client", () => {
     });
 
     describe("getBreedList()", () => {
-        it("should return a BreedsResponse object", async () => {
+        it("should return a Breeds array", async () => {
             const response = await client.getBreedList();
+
             expect(response).to.be.an.instanceOf(Array);
             expect(response[0]).to.have.property("id");
             expect(response[0]).to.have.property("name");
-
         });
     });
 
     describe("getBreed()", () => {
-        it("should return a single BreedResponse object on a name", async () => {
+        it("should return an array with one object on a specific name search", async () => {
             const breedName = "Sphynx";
             const response = await client.getBreed(breedName);
 
@@ -88,7 +87,7 @@ describe("Client", () => {
             expect(response[0]).to.have.property("name", breedName);
         });
 
-        it("should return a single BreedResponse object on a id", async () => {
+        it("should return an array with one object on a on a id search", async () => {
             const breedName = "sphy";
             const response = await client.getBreed(breedName);
 
@@ -99,7 +98,7 @@ describe("Client", () => {
             expect(response[0]).to.have.property("name", "Sphynx");
         });
 
-        it("should return a multiple BreedResponse objects when name/id is partially matched", async () => {
+        it("should return a multiple objects when name/id is partially matched", async () => {
             const breedName = "a";
             const response = await client.getBreed(breedName);
 
@@ -110,6 +109,7 @@ describe("Client", () => {
         it("should return an empty array on an invalid breed name", async () => {
             const breedName = "not a real cat breed";
             const response = await client.getBreed(breedName);
+
             expect(response?.length).to.equal(0)
         });
     });
